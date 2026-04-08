@@ -8,6 +8,7 @@ import Hero from "@/components/Hero";
 import Kashmir from "@/components/Kashmir";
 import ChessYard from "@/components/ChessYard";
 import LatentRiot from "@/components/LatentRiot";
+import SolitaryFIR from "@/components/SolitaryFIR";
 
 export default function Home() {
   useEffect(() => {
@@ -24,11 +25,7 @@ export default function Home() {
       <Kashmir />
       <ChessYard />
       <LatentRiot />
-      <section id="solitary-fir" className="relative bg-cell py-32">
-        <div className="max-w-[900px] mx-auto px-6">
-          <p className="font-space text-dim text-sm">Solitary FIR section</p>
-        </div>
-      </section>
+      <SolitaryFIR />
       <section id="still-alive" className="relative bg-cell py-32">
         <div className="max-w-[520px] mx-auto px-6">
           <p className="font-space text-dim text-sm">Still Alive section</p>
