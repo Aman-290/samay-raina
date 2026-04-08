@@ -6,6 +6,7 @@ import SurveillanceCam from "@/components/SurveillanceCam";
 import SoundToggle from "@/components/SoundToggle";
 import Hero from "@/components/Hero";
 import Kashmir from "@/components/Kashmir";
+import ChessYard from "@/components/ChessYard";
 
 export default function Home() {
   useEffect(() => {
@@ -20,11 +21,7 @@ export default function Home() {
       <main>
       <Hero />
       <Kashmir />
-      <section id="chess-yard" className="relative bg-yard py-32">
-        <div className="max-w-[900px] mx-auto px-6">
-          <p className="font-space text-dim text-sm">Chess Yard section</p>
-        </div>
-      </section>
+      <ChessYard />
       <section id="latent-riot" className="relative bg-yard py-32">
         <div className="max-w-[900px] mx-auto px-6">
           <p className="font-space text-dim text-sm">Latent Riot section</p>
