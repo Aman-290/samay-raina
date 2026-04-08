@@ -10,6 +10,7 @@ import ChessYard from "@/components/ChessYard";
 import LatentRiot from "@/components/LatentRiot";
 import SolitaryFIR from "@/components/SolitaryFIR";
 import StillAlive from "@/components/StillAlive";
+import Wall from "@/components/Wall";
 
 export default function Home() {
   useEffect(() => {
@@ -28,11 +29,7 @@ export default function Home() {
       <LatentRiot />
       <SolitaryFIR />
       <StillAlive />
-      <section id="wall" className="relative bg-cell py-32">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <p className="font-space text-dim text-sm">The Wall section</p>
-        </div>
-      </section>
+      <Wall />
     </main>
     </>
   );
