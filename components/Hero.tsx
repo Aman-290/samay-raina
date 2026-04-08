@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap-setup";
 import { heroContent } from "@/lib/content";
+import { playSound, stopSound } from "@/lib/audio";
 
 const DESKTOP_BAR_COUNT = 12;
 const MOBILE_BAR_COUNT = 7;
@@ -90,7 +91,26 @@ export default function Hero() {
           );
         }
 
+        let groanPlaying = false;
+        tl.eventCallback("onUpdate", () => {
+          const progress = tl.progress();
+          if (progress > 0.05 && progress < 0.95 && !groanPlaying) {
+            playSound("metallic-groan", "/audio/metallic-groan.mp3", {
+              loop: true,
+              volume: 0.15,
+            });
+            groanPlaying = true;
+          }
+          if (progress >= 0.95 && groanPlaying) {
+            stopSound("metallic-groan");
+            playSound("clank", "/audio/clank.mp3", { volume: 0.4 });
+            groanPlaying = false;
+          }
+        });
+
         return () => {
+          stopSound("metallic-groan");
+          stopSound("clank");
           tl.kill();
         };
       }

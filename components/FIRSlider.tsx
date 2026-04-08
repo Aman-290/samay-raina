@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import FIRModal from "@/components/FIRModal";
+import { playSound, stopSound, setSoundVolume } from "@/lib/audio";
 
 export default function FIRSlider() {
   const [value, setValue] = useState(100);
@@ -13,6 +14,13 @@ export default function FIRSlider() {
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const v = Number(e.target.value);
     setValue(v);
+
+    if (v <= 25 && v > 1) {
+      playSound("static", "/audio/static-noise.mp3", { loop: true, volume: 0.1 });
+      setSoundVolume("static", 0.3 * (1 - v / 25));
+    } else {
+      stopSound("static");
+    }
 
     if (v <= 1 && !showModal) {
       setFlashRed(true);
