@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { initScrollEngine, destroyScrollEngine } from "@/lib/gsap-setup";
 import SurveillanceCam from "@/components/SurveillanceCam";
 import SoundToggle from "@/components/SoundToggle";
+import EasterEggs from "@/components/EasterEggs";
 import Hero from "@/components/Hero";
 import Kashmir from "@/components/Kashmir";
 import ChessYard from "@/components/ChessYard";
@@ -22,6 +23,7 @@ export default function Home() {
     <>
       <SurveillanceCam />
       <SoundToggle />
+      <EasterEggs />
       <main>
       <Hero />
       <Kashmir />
