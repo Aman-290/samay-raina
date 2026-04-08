@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import { initScrollEngine, destroyScrollEngine } from "@/lib/gsap-setup";
+import SurveillanceCam from "@/components/SurveillanceCam";
+import SoundToggle from "@/components/SoundToggle";
 
 export default function Home() {
   useEffect(() => {
@@ -10,7 +12,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <>
+      <SurveillanceCam />
+      <SoundToggle />
+      <main>
       <section id="hero" className="relative h-screen bg-cell">
         <div className="flex items-center justify-center h-full">
           <p className="font-space text-dim text-sm">Hero section loading...</p>
@@ -47,5 +52,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </>
   );
 }
