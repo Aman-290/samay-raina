@@ -1,4 +1,14 @@
+"use client";
+
+import { useEffect } from "react";
+import { initScrollEngine, destroyScrollEngine } from "@/lib/gsap-setup";
+
 export default function Home() {
+  useEffect(() => {
+    const lenis = initScrollEngine();
+    return () => destroyScrollEngine();
+  }, []);
+
   return (
     <main>
       <section id="hero" className="relative h-screen bg-cell">
