@@ -7,6 +7,7 @@ import SoundToggle from "@/components/SoundToggle";
 import Hero from "@/components/Hero";
 import Kashmir from "@/components/Kashmir";
 import ChessYard from "@/components/ChessYard";
+import LatentRiot from "@/components/LatentRiot";
 
 export default function Home() {
   useEffect(() => {
@@ -22,11 +23,7 @@ export default function Home() {
       <Hero />
       <Kashmir />
       <ChessYard />
-      <section id="latent-riot" className="relative bg-yard py-32">
-        <div className="max-w-[900px] mx-auto px-6">
-          <p className="font-space text-dim text-sm">Latent Riot section</p>
-        </div>
-      </section>
+      <LatentRiot />
       <section id="solitary-fir" className="relative bg-cell py-32">
         <div className="max-w-[900px] mx-auto px-6">
           <p className="font-space text-dim text-sm">Solitary FIR section</p>
