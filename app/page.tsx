@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { initScrollEngine, destroyScrollEngine } from "@/lib/gsap-setup";
 import SurveillanceCam from "@/components/SurveillanceCam";
 import SoundToggle from "@/components/SoundToggle";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   useEffect(() => {
@@ -16,11 +17,7 @@ export default function Home() {
       <SurveillanceCam />
       <SoundToggle />
       <main>
-      <section id="hero" className="relative h-screen bg-cell">
-        <div className="flex items-center justify-center h-full">
-          <p className="font-space text-dim text-sm">Hero section loading...</p>
-        </div>
-      </section>
+      <Hero />
       <section id="kashmir" className="relative bg-cell py-32">
         <div className="max-w-[720px] mx-auto px-6">
           <p className="font-space text-dim text-sm">Kashmir section</p>
