@@ -1,0 +1,66 @@
+import type { Metadata } from "next";
+import { Anton, Space_Mono, DM_Sans, Caveat } from "next/font/google";
+import "./globals.css";
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton-var",
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-space-mono",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-caveat-var",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Samay Raina — The Jail Break | A Tribute by Brokai Labs",
+  description:
+    "From Kashmir to Madison Square Garden. A scroll-driven tribute to India's most uncancellable comedian.",
+  openGraph: {
+    title: "Samay Raina — The Jail Break | A Tribute by Brokai Labs",
+    description:
+      "From Kashmir to Madison Square Garden. A scroll-driven tribute to India's most uncancellable comedian.",
+    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Samay Raina — The Jail Break | A Tribute by Brokai Labs",
+    description:
+      "From Kashmir to Madison Square Garden. A scroll-driven tribute to India's most uncancellable comedian.",
+    images: ["/images/og-image.jpg"],
+  },
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="en"
+      className={`${anton.variable} ${spaceMono.variable} ${dmSans.variable} ${caveat.variable}`}
+    >
+      <body className="font-dm bg-cell text-chalk">{children}</body>
+    </html>
+  );
+}
