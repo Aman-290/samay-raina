@@ -7,11 +7,6 @@ export default function EasterEggs() {
   const [isBakchod, setIsBakchod] = useState(false);
   const [showFIRTally, setShowFIRTally] = useState(false);
   const bufferRef = useRef("");
-  const knightRef = useRef<HTMLDivElement>(null);
-  const mousePos = useRef({ x: 0, y: 0 });
-  const knightPos = useRef({ x: 0, y: 0 });
-  const rafRef = useRef<number>(0);
-  const isInChessYard = useRef(false);
 
   // Konami code: type "BAKCHOD"
   useEffect(() => {
@@ -41,43 +36,6 @@ export default function EasterEggs() {
     return () => { document.documentElement.style.filter = ""; };
   }, [isBakchod]);
 
-  // Knight cursor follower (chess yard section only)
-  useEffect(() => {
-    const updateKnight = () => {
-      if (!knightRef.current || !isInChessYard.current) {
-        if (knightRef.current) knightRef.current.style.opacity = "0";
-        rafRef.current = requestAnimationFrame(updateKnight);
-        return;
-      }
-      const lerp = 0.1;
-      knightPos.current.x += (mousePos.current.x - knightPos.current.x) * lerp;
-      knightPos.current.y += (mousePos.current.y - knightPos.current.y) * lerp;
-      knightRef.current.style.transform = `translate(${knightPos.current.x}px, ${knightPos.current.y}px)`;
-      knightRef.current.style.opacity = "1";
-      rafRef.current = requestAnimationFrame(updateKnight);
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePos.current = { x: e.clientX + 15, y: e.clientY + 15 };
-      const chessYard = document.getElementById("chess-yard");
-      if (chessYard) {
-        const rect = chessYard.getBoundingClientRect();
-        isInChessYard.current = e.clientY >= rect.top && e.clientY <= rect.bottom;
-      }
-    };
-
-    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-    if (isDesktop) {
-      window.addEventListener("mousemove", handleMouseMove);
-      rafRef.current = requestAnimationFrame(updateKnight);
-    }
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
   // FIR tally: days since Feb 8, 2025
   const [daysSinceFIR, setDaysSinceFIR] = useState(0);
 
@@ -91,15 +49,6 @@ export default function EasterEggs() {
 
   return (
     <>
-      {/* Knight cursor */}
-      <div
-        ref={knightRef}
-        className="fixed top-0 left-0 z-[9989] pointer-events-none opacity-0 hidden md:block"
-        style={{ transition: "opacity 0.3s" }}
-      >
-        <span className="text-2xl">&#9822;</span>
-      </div>
-
       {/* FIR Tally — click to reveal */}
       <div
         className="fixed bottom-4 right-4 z-[9989] cursor-pointer"
