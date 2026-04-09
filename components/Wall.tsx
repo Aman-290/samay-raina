@@ -1,13 +1,13 @@
 import { wallContent } from "@/lib/content";
 
 export default function Wall() {
-  const handwritingFonts = [
-    "font-caveat", 
-    "font-marker", 
-    "font-indie", 
-    "font-kalam", 
-    "font-amatic", 
-    "font-shadows"
+  const cardStyles = [
+    { font: 'font-caveat', container: 'text-chalk/90 bg-transparent text-4xl hover:scale-105', shadow: '0 0 10px rgba(255,255,255,0.2)' },
+    { font: 'font-marker', container: 'text-alarm bg-transparent text-3xl hover:scale-105', shadow: '4px 4px 0px #000' },
+    { font: 'font-indie', container: 'text-[#1a1a1a] bg-[#f4f0e6] p-6 border-t-[12px] border-[#e8dcb8] text-2xl hover:scale-110 shadow-[0_20px_40px_rgba(0,0,0,0.8)]' },
+    { font: 'font-kalam', container: 'text-alive bg-transparent text-3xl hover:scale-105', shadow: '0 0 20px rgba(0,230,118,0.5)' },
+    { font: 'font-amatic', container: 'text-gold bg-transparent text-5xl tracking-widest hover:scale-105', shadow: '2px 2px 10px rgba(0,0,0,0.9)' },
+    { font: 'font-shadows', container: 'text-chalk/80 bg-black/60 backdrop-blur-md p-8 border border-white/10 text-3xl rounded-xl hover:scale-105 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' }
   ];
 
   return (
@@ -15,7 +15,7 @@ export default function Wall() {
       id="wall" 
       className="relative pt-32 pb-24 bg-[#050505] overflow-hidden min-h-screen"
       style={{
-          backgroundImage: "linear-gradient(rgba(5,5,5,0.7), rgba(5,5,5,0.9)), url('/images/wall_bg.png')",
+          backgroundImage: "linear-gradient(rgba(5,5,5,0.8), rgba(5,5,5,0.95)), url('/images/wall_bg.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed"
@@ -25,42 +25,55 @@ export default function Wall() {
 
       <div className="max-w-[1600px] mx-auto px-4 lg:px-8 relative z-10">
         
-        {/* Title */}
-        <div className="flex justify-center mb-32 relative">
-          <div className="bg-[#121212]/50 backdrop-blur-md border border-steel/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)] relative transform -rotate-2">
-            {/* Fake Tape */}
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-24 h-8 bg-zinc-400/20 backdrop-blur-sm -rotate-3 z-20 shadow-sm"></div>
-            <h2 className="font-space text-chalk/80 text-sm md:text-base tracking-[0.4em] font-bold uppercase px-16 py-6">
-              {wallContent.sectionLabel}
-            </h2>
+        {/* Massive Creative Title */}
+        <div className="flex flex-col items-center justify-center mb-40 relative z-20 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[800px] h-[300px] bg-alarm/20 blur-[100px] rounded-full mix-blend-screen"></div>
+          <h2 className="font-marker text-[80px] sm:text-[120px] md:text-[160px] lg:text-[200px] text-transparent bg-clip-text bg-gradient-to-br from-alarm via-chalk to-steel leading-none text-center -rotate-2 drop-shadow-[0_10px_20px_rgba(255,61,0,0.4)]">
+            THE WALL
+          </h2>
+          <div className="font-space text-chalk/50 tracking-[0.5em] uppercase text-sm md:text-xl mt-4 bg-black/50 px-8 py-2 border-y border-steel/50">
+            EVIDENCE • TRIBUTES • GRAFFITI
           </div>
         </div>
 
         {/* Scattered Graffiti/Notes */}
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 py-12 md:py-32 relative z-10 w-full mx-auto max-w-[1400px]">
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 relative z-10 w-full mx-auto max-w-[1400px]">
             {wallContent.quotes.map((quote, i) => {
-                const rotations = [-8, 12, -15, 6, 18, -4, -12, 9, 2, -18, 14, -7];
+                const rotations = [-6, 9, -12, 4, 15, -4, -8, 7, 2, -14, 10, -5];
                 const mt = [0, 80, -40, 120, -80, 40, 60, -20, 100, 10, -60, 30];
                 const rotate = rotations[i % 12];
                 const marginTop = mt[i % 12];
-                const fontClass = handwritingFonts[i % handwritingFonts.length];
-                const isWarning = i % 4 === 0;
+                
+                const styleObj = cardStyles[i % cardStyles.length];
+                const isPostIt = styleObj.font === 'font-indie';
+                const isWarning = i % 8 === 0;
 
                 return (
                 <div
                     key={i}
-                    className={`w-full sm:w-[320px] md:w-[400px] ${isWarning ? 'bg-alarm/10 backdrop-blur-sm border border-alarm/20 text-alarm' : 'bg-transparent text-[#e8e4df]'} p-6 transition-all duration-500 hover:scale-105 hover:z-50 relative group cursor-crosshair drop-shadow-xl`}
+                    className={`w-full sm:w-[320px] md:w-[400px] transition-all duration-500 relative group cursor-crosshair drop-shadow-2xl ${styleObj.container}`}
                     style={{ 
-                    transform: `rotate(${rotate}deg)`,
-                    marginTop: `${marginTop}px`
+                        transform: `rotate(${rotate}deg)`,
+                        marginTop: `${marginTop}px`,
+                        textShadow: styleObj.shadow
                     }}
                 >
-                    {isWarning && <div className="absolute -top-8 -right-8 w-24 h-8 bg-alarm/20 backdrop-blur-sm rotate-45 transform origin-bottom-left flex items-center justify-center font-space text-[8px] text-alarm font-bold tracking-widest pointer-events-none">EVIDENCE</div>}
+                    {/* Tape/Pin decoration based on style */}
+                    {isPostIt && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 opacity-20 rotate-12">
+                            <svg viewBox="0 0 100 100"><path fill="#000" d="M10,0 L90,10 L80,30 L20,20 Z" /></svg>
+                        </div>
+                    )}
+                    {!isPostIt && !styleObj.container.includes('bg-black') && (
+                        <div className="absolute top-2 left-2 text-chalk/10 font-space text-[10px] pointer-events-none">#{(i+1).toString().padStart(3, '0')}</div>
+                    )}
 
-                    <p className={`${fontClass} leading-tight text-3xl md:text-4xl relative z-10`} style={{ textShadow: isWarning ? '0 0 10px rgba(255, 61, 0, 0.5)' : '2px 2px 4px rgba(0,0,0,0.8)' }}>
+                    {isWarning && <div className="absolute -top-6 -right-6 w-24 h-8 bg-alarm/80 backdrop-blur-sm rotate-12 flex items-center justify-center font-space text-[10px] text-black font-black tracking-widest shadow-xl">EVIDENCE</div>}
+
+                    <p className={`${styleObj.font} leading-tight relative z-10`}>
                     "{quote.text}"
                     </p>
-                    <p className="font-space text-[10px] text-dim/60 mt-6 tracking-widest uppercase font-bold text-right">
+                    <p className={`font-space text-[10px] md:text-xs mt-6 tracking-widest uppercase font-bold text-right ${isPostIt ? 'text-black/60' : 'text-dim'}`}>
                     — {quote.author}
                     </p>
                 </div>
