@@ -1,25 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-  --font-size-hero-mobile: 56px;
-  --font-size-hero-mobile--line-height: 1;
-  --font-size-stat-desktop: 72px;
-  --font-size-stat-desktop--line-height: 1;
-  --font-size-stat-mobile: 48px;
-  --font-size-stat-mobile--line-height: 1;
+@import "tailwindcss";
+
+@theme inline {
+  --color-cell: #0a0a0a;
+  --color-concrete: #1c1c1e;
+  --color-yard: #141416;
+  --color-void: #050505;
+  --color-chalk: #e8e4df;
+  --color-offwhite: #f4f4f5;
+  --color-dim: #6b6b6f;
+  --color-alarm: #ff3d00;
+  --color-alive: #00e676;
+  --color-gold: #ffd54f;
+  --color-caution: #ffab40;
+  --color-steel: #3a3a3c;
+
+  --font-anton: var(--font-anton-var), sans-serif;
+  --font-space: var(--font-space-mono), monospace;
+  --font-dm: var(--font-dm-sans), sans-serif;
+  --font-caveat: var(--font-caveat-var), cursive;
 }
 
 :root {
-  --bg-cell: #0A0A0A;
-  --bg-concrete: #1C1C1E;
-  --bg-yard: #141416;
-  --text-chalk: #E8E4DF;
-  --text-dim: #6B6B6F;
-  --accent-alarm: #FF3D00;
-  --accent-alive: #00E676;
-  --accent-gold: #FFD54F;
-  --bar-steel: #3A3A3C;
-  --scratch-white: #FFFFFF;
+  --bg-cell: #0a0a0a;
+  --text-chalk: #e8e4df;
+  --bar-steel: #3a3a3c;
 }
 
 html {
@@ -45,49 +49,86 @@ body::before {
   background-size: 256px 256px;
 }
 
-/* Fog animation for Kashmir section */
 @keyframes fog-drift {
-  0% { transform: translateX(-10%); opacity: 0.08; }
-  50% { transform: translateX(10%); opacity: 0.12; }
-  100% { transform: translateX(-10%); opacity: 0.08; }
+  0% {
+    transform: translateX(-10%);
+    opacity: 0.08;
+  }
+  50% {
+    transform: translateX(10%);
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateX(-10%);
+    opacity: 0.08;
+  }
 }
 
-/* Hue rotation for IGL Riot section */
 @keyframes hue-cycle {
-  0% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(20deg); }
-  100% { filter: hue-rotate(0deg); }
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(20deg);
+  }
+  100% {
+    filter: hue-rotate(0deg);
+  }
 }
 
-/* Glitch effect for FIR slider */
 @keyframes glitch-jitter {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-3px); }
-  40% { transform: translateX(2px); }
-  60% { transform: translateX(-1px); }
-  80% { transform: translateX(3px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-3px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
-/* Pulse animation for stats */
 @keyframes stat-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
 }
 
-/* Scroll indicator pulse */
 @keyframes scroll-pulse {
-  0%, 100% { opacity: 0.4; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(4px); }
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
 }
 
-/* REC dot pulse */
 @keyframes rec-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
-/* Cell door plate gradient */
 .cell-door-plate {
   width: 280px;
   height: 60px;
@@ -95,25 +136,26 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2A2A2E, #1C1C1E);
+  background: linear-gradient(135deg, #2a2a2e, #1c1c1e);
 }
 
-/* Redacted text */
 .redacted {
-  background-color: white;
-  color: white;
+  background-color: #fff;
+  color: #fff;
   transition: all 0.3s ease;
   cursor: pointer;
   padding: 0 4px;
 }
+
 .redacted:hover {
   background-color: transparent;
   color: var(--text-chalk);
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
