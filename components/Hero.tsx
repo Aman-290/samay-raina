@@ -245,7 +245,7 @@ export default function Hero() {
       <div className="sticky top-0 z-20 h-screen pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/65" />
 
-        <div className="absolute inset-x-0 bottom-[2vh] flex justify-center px-5 md:bottom-[4vh] md:px-10">
+        <div className="absolute inset-x-0 bottom-[20%] flex justify-center px-5 md:px-10">
           <div
             ref={textBlockRef}
             className="w-full max-w-[1100px] text-center will-change-transform"
@@ -260,10 +260,7 @@ export default function Hero() {
             <p className="mx-auto mt-4 w-[min(84vw,1200px)] max-w-full text-balance font-space text-[clamp(1rem,1.38vw,1.35rem)] leading-[1.5] text-[#B0B0B0] md:mt-5">
               <span className="italic text-[#A8FFB2]">
                 &quot;I swear to God I felt like it was a dream, it wasn&apos;t real...&quot;
-              </span>{" "}
-              A digital manhunt escalated faster than context: FIR loops,
-              courtroom noise, and algorithmic drift turning performance into
-              prosecution.
+              </span>
             </p>
           </div>
         </div>
