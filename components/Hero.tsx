@@ -289,11 +289,11 @@ export default function Hero() {
                         style={{ width: `${loadingPercent}%`, transition: 'width 0.3s ease-out' }}
                     ></div>
                 </div>
-                <div className="flex justify-between items-center mt-6">
-                    <p className="font-space text-[10px] md:text-xs tracking-[0.3em] text-dim uppercase uppercase">
+                <div className="flex justify-between items-center mt-8">
+                    <p className="font-space text-xs md:text-sm tracking-[0.3em] text-dim uppercase">
                         {loadingPercent < 40 ? "Setting up the board..." : loadingPercent < 80 ? "Loading the Supreme Leader..." : "Initializing Jailbreak..."}
                     </p>
-                    <p className="font-space text-xs text-white opacity-80 tracking-widest">{loadingPercent}%</p>
+                    <p className="font-space text-sm md:text-lg text-white opacity-80 tracking-widest">{loadingPercent}%</p>
                 </div>
               </div>
             </div>
@@ -308,11 +308,11 @@ export default function Hero() {
               }}
             >
               <div className="absolute inset-0 bg-white/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <span className="font-playfair italic text-5xl md:text-6xl text-white tracking-wide transition-all group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] duration-500 relative z-10">
+              <span className="font-playfair italic text-5xl md:text-7xl text-white tracking-wide transition-all group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] duration-500 relative z-10">
                 Enter
               </span>
               <div className="h-[1px] w-12 bg-white/30 group-hover:w-24 group-hover:bg-white transition-all duration-500"></div>
-              <span className="font-space text-[10px] md:text-xs tracking-[0.4em] text-dim group-hover:text-white uppercase transition-colors duration-500 relative z-10">
+              <span className="font-space text-xs md:text-sm tracking-[0.4em] text-dim group-hover:text-white uppercase transition-colors duration-500 relative z-10">
                 Unmute Experience
               </span>
             </button>
