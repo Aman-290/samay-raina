@@ -55,6 +55,8 @@ export default function ChessPuzzleComponent() {
       const uci = move.from + move.to;
 
       if (uci === expectedMove) {
+        playSound("move", "/audio/chess-move.mp3", { volume: 0.7 });
+
         if (gameCopy.isCheckmate() || moveIndex >= puzzle.solution.length - 1) {
           setMessage("✓ Samay would be proud!");
           setSolved(true);
@@ -62,13 +64,11 @@ export default function ChessPuzzleComponent() {
         } else {
           setMoveIndex((prev) => prev + 1);
           setMessage("Correct! Keep going...");
-          playSound("move", "/audio/chess-move.mp3", { volume: 0.7 });
         }
         setGame(gameCopy);
         return true;
       } else {
         setMessage("Bhai, phir se try kar 😂");
-        playSound("censor", "/audio/censor-beep.mp3", { volume: 0.7 });
         setTimeout(() => setMessage(puzzle.hint), 2000);
         return false;
       }

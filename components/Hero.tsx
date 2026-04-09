@@ -10,6 +10,7 @@ const ZOOM_FACTOR = 1.35;
 const COVER_ANCHOR_Y = 0.2;
 const PARALLAX_X = 28;
 const PARALLAX_Y = 20;
+const TEXT_BASE_Y = 24;
 const FRAME_FOLDER = "/ezgif-7eef6f5b8dfad6ee-jpg";
 
 function clamp(value: number, min: number, max: number): number {
@@ -153,7 +154,7 @@ export default function Hero() {
         const scrollFraction = (clampedY - heroStart) / span;
         const nextFrame = Math.round(scrollFraction * (PLAYABLE_FRAMES - 1));
         const textFade = clamp(1 - scrollFraction * 1.4, 0, 1);
-        const textDrop = Math.round(scrollFraction * 42);
+        const textDrop = TEXT_BASE_Y + Math.round(scrollFraction * 42);
 
         if (textBlockRef.current) {
           textBlockRef.current.style.opacity = String(textFade);
@@ -244,11 +245,11 @@ export default function Hero() {
       <div className="sticky top-0 z-20 h-screen pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/65" />
 
-        <div className="absolute inset-x-0 bottom-[7vh] flex justify-center px-5 md:bottom-[9vh] md:px-10">
+        <div className="absolute inset-x-0 bottom-[2vh] flex justify-center px-5 md:bottom-[4vh] md:px-10">
           <div
             ref={textBlockRef}
             className="w-full max-w-[1100px] text-center will-change-transform"
-            style={{ opacity: 1, transform: "translate3d(0, 0, 0)" }}
+            style={{ opacity: 1, transform: `translate3d(0, ${TEXT_BASE_Y}px, 0)` }}
           >
             <h1
               className="font-anton text-[clamp(3.75rem,10.5vw,12rem)] leading-[0.9] tracking-[-0.05em] text-[#F4F4F5] uppercase"
@@ -256,7 +257,7 @@ export default function Hero() {
             >
               The Psychosis.
             </h1>
-            <p className="mx-auto mt-5 w-[min(60vw,800px)] max-w-full text-balance font-space text-[clamp(1rem,1.55vw,1.45rem)] leading-[1.6] text-[#B0B0B0] md:mt-7">
+            <p className="mx-auto mt-4 w-[min(84vw,1200px)] max-w-full text-balance font-space text-[clamp(1rem,1.38vw,1.35rem)] leading-[1.5] text-[#B0B0B0] md:mt-5">
               <span className="italic text-[#A8FFB2]">
                 &quot;I swear to God I felt like it was a dream, it wasn&apos;t real...&quot;
               </span>{" "}

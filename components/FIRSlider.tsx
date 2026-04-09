@@ -28,6 +28,7 @@ export default function FIRSlider() {
     }
 
     if (v <= 1 && !showModal) {
+      playSound("censor", "/audio/censor-beep.mp3", { volume: 0.7 });
       playClank();
       setFlashRed(true);
       setTimeout(() => {
