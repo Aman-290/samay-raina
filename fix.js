@@ -1,0 +1,1 @@
+﻿const fs = require('fs'); ['ChessYard.tsx', 'LatentRiot.tsx', 'SolitaryFIR.tsx', 'StillAlive.tsx', 'Wall.tsx'].forEach(name => { const f = 'components/' + name; let c = fs.readFileSync(f, 'utf8'); const split = c.split('export default function'); if(split.length > 2) { fs.writeFileSync(f, split[0] + 'export default function' + split[1]); console.log('fixed', f); } });

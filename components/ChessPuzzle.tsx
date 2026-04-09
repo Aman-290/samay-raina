@@ -10,9 +10,12 @@ const Chessboard = dynamic(
   { ssr: false, loading: () => <div className="w-full aspect-square bg-concrete rounded animate-pulse" /> }
 );
 
+ 
 export default function ChessPuzzleComponent() {
   const [puzzleIndex, setPuzzleIndex] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [game, setGame] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [Chess, setChess] = useState<any>(null);
   const [message, setMessage] = useState("");
   const [solved, setSolved] = useState(false);
@@ -28,7 +31,9 @@ export default function ChessPuzzleComponent() {
     });
   }, [puzzle.fen]);
 
+   
   const onDrop = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ({ sourceSquare, targetSquare }: { piece: any; sourceSquare: string; targetSquare: string | null }): boolean => {
       if (!game || !Chess || solved || !targetSquare || sourceSquare === targetSquare) return false;
 
@@ -53,15 +58,17 @@ export default function ChessPuzzleComponent() {
         if (gameCopy.isCheckmate() || moveIndex >= puzzle.solution.length - 1) {
           setMessage("✓ Samay would be proud!");
           setSolved(true);
-          playSound("roast", "/audio/roast-clip.mp3", { volume: 0.5 });
+          playSound("win", "/audio/win-sound.mp3", { volume: 0.8 });
         } else {
           setMoveIndex((prev) => prev + 1);
           setMessage("Correct! Keep going...");
+          playSound("move", "/audio/chess-move.mp3", { volume: 0.7 });
         }
         setGame(gameCopy);
         return true;
       } else {
         setMessage("Bhai, phir se try kar 😂");
+        playSound("censor", "/audio/censor-beep.mp3", { volume: 0.7 });
         setTimeout(() => setMessage(puzzle.hint), 2000);
         return false;
       }

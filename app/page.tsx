@@ -15,7 +15,7 @@ import Wall from "@/components/Wall";
 
 export default function Home() {
   useEffect(() => {
-    const lenis = initScrollEngine();
+    initScrollEngine();
     return () => destroyScrollEngine();
   }, []);
 

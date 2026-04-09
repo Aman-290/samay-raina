@@ -94,42 +94,48 @@ export default function ChessYard() {
         {gridCells}
       </div>
 
-      <div className="relative max-w-[900px] mx-auto px-6 z-10">
-        <div className="cell-door-plate mx-auto mb-16">
+      <div className="relative max-w-[1400px] mx-auto px-6 z-10">
+        <div className="cell-door-plate mx-auto mb-16 lg:mb-24">
           <span className="font-space text-[10px] md:text-xs text-gold tracking-[3px]">
             {chessYardContent.sectionLabel}
           </span>
         </div>
 
-        {chessYardContent.paragraphs.map((text, i) => (
-          <p
-            key={i}
-            ref={(el) => { paragraphsRef.current[i] = el; }}
-            className="font-dm text-base md:text-lg text-chalk leading-[1.8] mb-6 opacity-0 max-w-[720px] mx-auto"
-          >
-            {text}
-          </p>
-        ))}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            {chessYardContent.paragraphs.map((text, i) => (
+              <p
+                key={i}
+                ref={(el) => { paragraphsRef.current[i] = el; }}
+                className="font-dm text-base md:text-xl lg:text-2xl text-chalk leading-[1.8] opacity-0"
+              >
+                {text}
+              </p>
+            ))}
 
-        <div ref={quoteRef} className="border-l-[3px] border-gold pl-4 mt-8 mb-12 opacity-0 max-w-[720px] mx-auto">
-          <p className="font-caveat text-[22px] md:text-[28px] text-gold leading-[1.4] -rotate-1">
-            {chessYardContent.quote}
-          </p>
-        </div>
-
-        <div className="flex gap-4 justify-center mb-12">
-          {chessYardContent.stats.map((stat, i) => (
-            <div key={i} className="text-center px-6 py-4 bg-cell rounded">
-              <div className="font-anton text-[48px] md:text-[72px] leading-none text-gold">
-                {stat.value.toLocaleString()}{stat.suffix}
-              </div>
-              <div className="font-dm text-xs text-dim mt-1">{stat.label}</div>
+            <div ref={quoteRef} className="border-l-[4px] lg:border-l-[8px] border-gold pl-6 lg:pl-10 mt-8 opacity-0">
+              <p className="font-caveat text-[28px] md:text-[36px] lg:text-[44px] text-gold leading-[1.4] -rotate-1">
+                {chessYardContent.quote}
+              </p>
             </div>
-          ))}
-        </div>
 
-        <div className="max-w-[400px] mx-auto">
-          <ChessPuzzle />
+            <div className="flex flex-wrap gap-4 mt-12 justify-center lg:justify-start">
+              {chessYardContent.stats.map((stat, i) => (
+                <div key={i} className="text-center px-8 py-6 bg-cell rounded shadow-xl border border-steel/20">
+                  <div className="font-anton text-[56px] md:text-[84px] leading-none text-gold">
+                    {stat.value.toLocaleString()}{stat.suffix}
+                  </div>
+                  <div className="font-dm text-[11px] md:text-xs text-dim mt-2 tracking-widest uppercase">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="w-full max-w-[500px] mx-auto shadow-2xl rounded-sm overflow-hidden bg-cell p-4 border border-gold/10">
+              <ChessPuzzle />
+            </div>
+          </div>
         </div>
 
         <div className="absolute bottom-6 right-6 font-space text-lg text-steel">

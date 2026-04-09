@@ -1,23 +1,6 @@
-@import "tailwindcss";
-
-@theme inline {
-  --color-cell: #0A0A0A;
-  --color-concrete: #1C1C1E;
-  --color-yard: #141416;
-  --color-chalk: #E8E4DF;
-  --color-dim: #6B6B6F;
-  --color-alarm: #FF3D00;
-  --color-alive: #00E676;
-  --color-gold: #FFD54F;
-  --color-steel: #3A3A3C;
-
-  --font-anton: var(--font-anton-var), sans-serif;
-  --font-space: var(--font-space-mono), monospace;
-  --font-dm: var(--font-dm-sans), sans-serif;
-  --font-caveat: var(--font-caveat-var), cursive;
-
-  --font-size-hero-desktop: 120px;
-  --font-size-hero-desktop--line-height: 1;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
   --font-size-hero-mobile: 56px;
   --font-size-hero-mobile--line-height: 1;
   --font-size-stat-desktop: 72px;

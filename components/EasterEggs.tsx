@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { playSound } from "@/lib/audio";
 
 export default function EasterEggs() {
@@ -42,21 +42,21 @@ export default function EasterEggs() {
   }, [isBakchod]);
 
   // Knight cursor follower (chess yard section only)
-  const updateKnight = useCallback(() => {
-    if (!knightRef.current || !isInChessYard.current) {
-      if (knightRef.current) knightRef.current.style.opacity = "0";
-      rafRef.current = requestAnimationFrame(updateKnight);
-      return;
-    }
-    const lerp = 0.1;
-    knightPos.current.x += (mousePos.current.x - knightPos.current.x) * lerp;
-    knightPos.current.y += (mousePos.current.y - knightPos.current.y) * lerp;
-    knightRef.current.style.transform = `translate(${knightPos.current.x}px, ${knightPos.current.y}px)`;
-    knightRef.current.style.opacity = "1";
-    rafRef.current = requestAnimationFrame(updateKnight);
-  }, []);
-
   useEffect(() => {
+    const updateKnight = () => {
+      if (!knightRef.current || !isInChessYard.current) {
+        if (knightRef.current) knightRef.current.style.opacity = "0";
+        rafRef.current = requestAnimationFrame(updateKnight);
+        return;
+      }
+      const lerp = 0.1;
+      knightPos.current.x += (mousePos.current.x - knightPos.current.x) * lerp;
+      knightPos.current.y += (mousePos.current.y - knightPos.current.y) * lerp;
+      knightRef.current.style.transform = `translate(${knightPos.current.x}px, ${knightPos.current.y}px)`;
+      knightRef.current.style.opacity = "1";
+      rafRef.current = requestAnimationFrame(updateKnight);
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX + 15, y: e.clientY + 15 };
       const chessYard = document.getElementById("chess-yard");
@@ -76,11 +76,18 @@ export default function EasterEggs() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [updateKnight]);
+  }, []);
 
   // FIR tally: days since Feb 8, 2025
-  const firDate = new Date("2025-02-08");
-  const daysSinceFIR = Math.floor((Date.now() - firDate.getTime()) / (1000 * 60 * 60 * 24));
+  const [daysSinceFIR, setDaysSinceFIR] = useState(0);
+
+  useEffect(() => {
+    const firDate = new Date("2025-02-08");
+    const diff = Math.floor((Date.now() - firDate.getTime()) / (1000 * 60 * 60 * 24));
+    setTimeout(() => {
+      setDaysSinceFIR(diff);
+    }, 0);
+  }, []);
 
   return (
     <>

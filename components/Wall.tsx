@@ -1,122 +1,67 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap-setup";
-import { wallContent } from "@/lib/content";
-
-const cardStyles = [
-  { rotate: -3, top: "0px", left: "5%" },
-  { rotate: 2, top: "0px", left: "55%" },
-  { rotate: 1.5, top: "180px", left: "15%" },
-  { rotate: -2, top: "160px", left: "60%" },
-  { rotate: 3, top: "340px", left: "5%" },
-  { rotate: -1, top: "320px", left: "50%" },
-  { rotate: 2.5, top: "480px", left: "20%" },
-  { rotate: -3, top: "460px", left: "65%" },
-  { rotate: 1, top: "620px", left: "8%" },
-  { rotate: -2.5, top: "600px", left: "55%" },
-  { rotate: 3, top: "760px", left: "25%" },
-  { rotate: -1.5, top: "740px", left: "60%" },
-];
+﻿import { wallContent } from "@/lib/content";
 
 export default function Wall() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const footerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    cardsRef.current.filter(Boolean).forEach((el, i) => {
-      const style = cardStyles[i] || cardStyles[0];
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 40, rotation: 0 },
-        {
-          opacity: 1,
-          y: 0,
-          rotation: style.rotate,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-          delay: i * 0.1,
-        }
-      );
-    });
-
-    if (footerRef.current) {
-      gsap.fromTo(
-        footerRef.current,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    }
-
-    return () => {
-      ScrollTrigger.getAll()
-        .filter((t) => sectionRef.current?.contains(t.trigger as Element))
-        .forEach((t) => t.kill());
-    };
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="wall"
-      className="relative py-24 md:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #00E676, #0A0A0A 300px, #0A0A0A)" }}
+    <section 
+      id="wall" 
+      className="relative pt-24 pb-16 bg-gradient-to-b from-[#0c4021] via-[#0a0a0a] to-[#000000] overflow-x-hidden min-h-screen"
     >
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="cell-door-plate mx-auto mb-16">
-          <span className="font-space text-[10px] md:text-xs text-chalk tracking-[3px]">
-            {wallContent.sectionLabel}
-          </span>
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Title */}
+        <div className="flex justify-center mb-24 relative z-10">
+          <div className="bg-[#1c1c1e] border border-[#2a2a2c] shadow-lg">
+            <h2 className="font-space text-[#e8e4df] text-xs md:text-sm tracking-[0.4em] uppercase px-12 py-4">
+              {wallContent.sectionLabel}
+            </h2>
+          </div>
         </div>
 
-        <div className="relative mx-auto" style={{ minHeight: "900px", maxWidth: "800px" }}>
+        {/* Scattered Cards */}
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-14">
           {wallContent.quotes.map((quote, i) => {
-            const style = cardStyles[i] || cardStyles[0];
+            // Deterministic scatter for a messy pinned-board look
+            const rotations = [-3, 4, -5, 2, 5, -2, -4, 3, 0, -3, 4, -1];
+            const mt = [0, 40, -20, 60, -40, 20, 30, -10, 50, 0, -30, 10];
+            const rotate = rotations[i % 12];
+            const marginTop = mt[i % 12];
+
             return (
               <div
                 key={i}
-                ref={(el) => { cardsRef.current[i] = el; }}
-                className="absolute w-[200px] md:w-[280px] p-4 bg-concrete border border-steel rounded opacity-0"
-                style={{ top: style.top, left: style.left }}
+                className="w-full sm:w-[320px] md:w-[380px] bg-[#141416] border border-[#2a2a2e] rounded-sm p-6 md:p-8 shadow-2xl transition-transform duration-300 hover:scale-105 hover:z-20 relative"
+                style={{ 
+                  transform: `rotate(${rotate}deg)`,
+                  marginTop: `${marginTop}px`
+                }}
               >
-                <p className="font-caveat text-base md:text-lg text-chalk leading-[1.4]">
-                  &ldquo;{quote.text}&rdquo;
+                <p className="font-caveat text-xl md:text-2xl text-[#e8e4df] leading-relaxed tracking-wide">
+                  &quot;{quote.text}&quot;
                 </p>
-                <p className="font-space text-[8px] text-dim mt-2">— {quote.author}</p>
+                <p className="font-space text-[10px] text-[#6b6b6f] mt-8">
+                  — {quote.author}
+                </p>
               </div>
             );
           })}
         </div>
 
-        <div ref={footerRef} className="text-center mt-16 opacity-0">
-          <p className="font-caveat text-[22px] md:text-[28px] text-alarm leading-[1.4] mb-8">
+        {/* Footer Sequence */}
+        <div className="mt-56 flex flex-col items-center justify-center relative z-10">
+          <p className="font-caveat text-[1.75rem] md:text-4xl text-[#ff3d00] text-center max-w-3xl leading-snug px-4">
             {wallContent.tribute}
           </p>
-          <div className="w-16 h-px bg-steel mx-auto mb-8" />
-          <p className="font-dm text-sm text-dim">{wallContent.credit}</p>
-          <p className="font-space text-[10px] text-steel mt-4 cursor-pointer hover:text-dim transition-colors">
+
+          <div className="w-12 h-[1px] bg-[#3a3a3c] my-12" />
+
+          <p className="font-dm text-[#6b6b6f] text-sm tracking-wide text-center">
+            {wallContent.credit}
+          </p>
+          <p className="font-space text-[#444] text-[10px] md:text-xs tracking-widest uppercase text-center mt-4 cursor-pointer hover:text-[#888] transition-colors">
             {wallContent.nextEpisodeCta}
           </p>
         </div>
-
-        <div className="text-right font-space text-lg text-steel mt-12">
-          {wallContent.tallyMarks}
-        </div>
+        
       </div>
     </section>
   );

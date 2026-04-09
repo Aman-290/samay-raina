@@ -28,9 +28,11 @@ export default function LatentRiot() {
       );
     });
 
+    const section = sectionRef.current;
+    
     return () => {
       ScrollTrigger.getAll()
-        .filter((t) => sectionRef.current?.contains(t.trigger as Element))
+        .filter((t) => section?.contains(t.trigger as Element))
         .forEach((t) => t.kill());
     };
   }, []);

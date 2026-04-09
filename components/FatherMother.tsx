@@ -8,15 +8,16 @@ export default function FatherMother() {
   const motherRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (motherRef.current) {
+    const mRef = motherRef.current;
+    if (mRef) {
       gsap.fromTo(
-        motherRef.current,
+        mRef,
         { filter: "blur(4px) sepia(0.3) saturate(1.2)" },
         {
           filter: "blur(0px) sepia(0.3) saturate(1.2)",
           ease: "power2.inOut",
           scrollTrigger: {
-            trigger: motherRef.current,
+            trigger: mRef,
             start: "top 70%",
             end: "bottom 30%",
             scrub: 1,
@@ -27,7 +28,7 @@ export default function FatherMother() {
 
     return () => {
       ScrollTrigger.getAll()
-        .filter((t) => motherRef.current === t.trigger || (motherRef.current?.parentElement?.contains(t.trigger as Element)))
+        .filter((t) => mRef === t.trigger || (mRef?.parentElement?.contains(t.trigger as Element)))
         .forEach((t) => t.kill());
     };
   }, []);

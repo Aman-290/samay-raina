@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 let isMuted = true;
@@ -9,6 +10,12 @@ export function getIsMuted(): boolean {
 
 export function toggleMute(): boolean {
   isMuted = !isMuted;
+  listeners.forEach((fn) => fn(isMuted));
+  return isMuted;
+}
+
+export function setMuted(muted: boolean): boolean {
+  isMuted = muted;
   listeners.forEach((fn) => fn(isMuted));
   return isMuted;
 }

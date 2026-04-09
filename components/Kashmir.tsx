@@ -47,9 +47,11 @@ export default function Kashmir() {
       );
     }
 
+    const section = sectionRef.current;
+    
     return () => {
       ScrollTrigger.getAll()
-        .filter((t) => sectionRef.current?.contains(t.trigger as Element))
+        .filter((t) => section?.contains(t.trigger as Element))
         .forEach((t) => t.kill());
     };
   }, []);
@@ -65,28 +67,30 @@ export default function Kashmir() {
         }}
       />
 
-      <div className="relative max-w-[720px] mx-auto px-6">
+      <div className="relative max-w-[1200px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Cell door plate */}
-        <div className="cell-door-plate mx-auto mb-16">
+        <div className="lg:col-span-2 cell-door-plate mx-auto mb-16">
           <span className="font-space text-[10px] md:text-xs text-dim tracking-[3px]">
             {kashmirContent.sectionLabel}
           </span>
         </div>
 
         {/* Paragraphs */}
-        {kashmirContent.paragraphs.map((text, i) => (
-          <p
-            key={i}
-            ref={(el) => { paragraphsRef.current[i] = el; }}
-            className="font-dm text-base md:text-lg text-chalk leading-[1.8] mb-6 opacity-0"
-          >
-            {text}
-          </p>
-        ))}
+        <div className="flex flex-col gap-6">
+          {kashmirContent.paragraphs.map((text, i) => (
+            <p
+              key={i}
+              ref={(el) => { paragraphsRef.current[i] = el; }}
+              className="font-dm text-base md:text-xl lg:text-2xl text-chalk leading-[1.8] opacity-0"
+            >
+              {text}
+            </p>
+          ))}
+        </div>
 
         {/* Quote */}
-        <div ref={quoteRef} className="border-l-[3px] border-steel pl-4 mt-10 opacity-0">
-          <p className="font-caveat text-[22px] md:text-[28px] text-chalk leading-[1.4] -rotate-1">
+        <div ref={quoteRef} className="border-l-[4px] lg:border-l-[8px] border-steel pl-6 lg:pl-12 opacity-0">
+          <p className="font-caveat text-[28px] md:text-[36px] lg:text-[48px] text-chalk leading-[1.4] -rotate-2">
             {kashmirContent.quote}
           </p>
         </div>
