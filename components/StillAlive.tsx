@@ -178,7 +178,7 @@ export default function StillAlive() {
                 <div className="absolute inset-0 bg-alive opacity-5 rounded-xl pointer-events-none blur-3xl"></div>
                 <div className="absolute top-0 right-0 text-[140px] text-alive/10 font-playfair leading-none pointer-events-none translate-x-4 -translate-y-8">"</div>
                 <p className="font-playfair italic text-[40px] sm:text-[50px] md:text-[64px] leading-[1.1] text-chalk font-black drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] relative z-10">
-                    Samay didn’t just survive the FIR. <br/><span className="text-alive text-[48px] sm:text-[60px] md:text-[76px] filter drop-shadow-[0_0_20px_rgba(0,230,118,0.6)]">He turned it into a tour name.</span>
+                    {stillAliveContent.quote}
                 </p>
                 <div className="mt-8 flex items-center gap-6 relative z-10">
                     <div className="h-[2px] w-16 bg-alive"></div>
