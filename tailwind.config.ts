@@ -28,6 +28,11 @@ const config: Config = {
         dm: ["var(--font-dm-sans)", "sans-serif"],
         caveat: ["var(--font-caveat-var)", "cursive"],
         playfair: ["var(--font-playfair-var)", "serif"],
+        marker: ["var(--font-marker)", "cursive"],
+        indie: ["var(--font-indie)", "cursive"],
+        kalam: ["var(--font-kalam)", "cursive"],
+        amatic: ["var(--font-amatic)", "cursive"],
+        shadows: ["var(--font-shadows)", "cursive"],
       },
       fontSize: {
         "hero-desktop": ["120px", { lineHeight: "1" }],
