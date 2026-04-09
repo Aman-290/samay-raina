@@ -75,10 +75,15 @@ export default function LatentRiot() {
           {/* Paragraph 1 - Large Card */}
           <div 
             ref={(el) => { cardRefs.current[0] = el; }}
-            className="md:col-span-8 bg-concrete border-l-4 border-l-alarm border-t border-t-steel/30 border-r border-r-steel/30 border-b border-b-steel/30 p-8 md:p-12 shadow-2xl relative overflow-hidden"
+            className="md:col-span-8 border-l-4 border-l-alarm border-t border-t-steel/30 border-r border-r-steel/30 border-b border-b-steel/30 p-8 md:p-12 shadow-2xl relative overflow-hidden"
+            style={{
+                backgroundImage: "linear-gradient(to right, rgba(28,28,30,0.95), rgba(28,28,30,0.7)), url('/images/latent_riot.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center"
+            }}
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-alarm/5 rounded-bl-full pointer-events-none"></div>
-            <p className="font-playfair text-2xl md:text-3xl text-chalk leading-relaxed opacity-0" style={{ animation: 'none' }}>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-alarm/20 rounded-bl-full pointer-events-none blur-xl"></div>
+            <p className="font-playfair text-2xl md:text-3xl text-chalk leading-relaxed relative z-10 font-bold" style={{ textShadow: "0 4px 20px rgba(0,0,0,0.8)" }}>
               {latentRiotContent.paragraphs[0]}
             </p>
           </div>

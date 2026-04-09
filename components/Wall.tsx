@@ -68,8 +68,8 @@ export default function Wall() {
         </div>
 
         {/* Footer Sequence */}
-        <div className="mt-[200px] flex flex-col items-center justify-center relative z-20">
-          <p className="font-playfair text-[40px] md:text-[70px] lg:text-[90px] text-alarm font-bold text-center leading-[1.1] px-4 italic mb-12 drop-shadow-[0_0_20px_rgba(255,61,0,0.3)] filter contrast-125 saturate-150">
+        <div className="mt-[200px] flex flex-col items-center justify-center relative z-20 w-full overflow-hidden">
+          <p className="font-playfair text-3xl sm:text-5xl md:text-6xl lg:text-[80px] text-alarm font-bold text-center leading-[1.15] px-4 italic mb-12 drop-shadow-[0_0_20px_rgba(255,61,0,0.3)] filter contrast-125 saturate-150 break-words w-full max-w-[1200px]">
             {wallContent.tribute}
           </p>
 

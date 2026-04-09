@@ -108,7 +108,12 @@ export default function ChessYard() {
       ref={sectionRef}
       id="chess-yard"
       className="relative py-32 md:py-48 overflow-hidden"
-      style={{ background: "#080808" }}
+      style={{ 
+          backgroundImage: "linear-gradient(rgba(8,8,8,0.85), rgba(8,8,8,0.95)), url('/images/chess_yard_bg.png')", 
+          backgroundSize: "cover", 
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed" 
+      }}
     >
       {/* 3D-ish glowing grid background */}
       <div className="absolute inset-0 perspective-[1000px] overflow-hidden pointer-events-none flex items-center justify-center">

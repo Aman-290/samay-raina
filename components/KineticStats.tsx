@@ -49,16 +49,16 @@ export default function KineticStats({ stats }: KineticStatsProps) {
       {stats.map((stat, i) => (
         <div
           key={i}
-          className="text-center py-6 px-4 bg-black/50 rounded border border-alive/25"
+          className="text-center py-6 px-4 bg-black/50 rounded border border-alive/25 flex flex-col items-center justify-center overflow-hidden"
           style={{ animation: hasAnimated ? "stat-pulse 2s ease-in-out infinite" : undefined }}
         >
           <div
             ref={(el) => { statRefs.current[i] = el; }}
-            className="font-anton text-[48px] md:text-[72px] leading-none text-alive"
+            className="font-anton text-4xl md:text-5xl lg:text-6xl leading-none text-alive break-all mx-auto max-w-full"
           >
             0
           </div>
-          <div className="font-dm text-xs md:text-sm text-dim mt-2">
+          <div className="font-dm text-xs md:text-sm text-dim mt-2 break-words text-center">
             {stat.label}
           </div>
         </div>
