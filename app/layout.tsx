@@ -58,6 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${anton.variable} ${spaceMono.variable} ${dmSans.variable} ${caveat.variable}`}
     >
       <body className="font-dm bg-cell text-chalk">{children}</body>
