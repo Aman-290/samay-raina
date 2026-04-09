@@ -109,7 +109,7 @@ export default function ChessYard() {
       id="chess-yard"
       className="relative py-32 md:py-48 overflow-hidden"
       style={{ 
-          backgroundImage: "linear-gradient(rgba(8,8,8,0.85), rgba(8,8,8,0.95)), url('/images/chess_yard_bg.png')", 
+          backgroundImage: "linear-gradient(rgba(8,8,8,0.85), rgba(8,8,8,0.95)), url('/images/chess_yard_bg.webp')", 
           backgroundSize: "cover", 
           backgroundPosition: "center",
           backgroundAttachment: "fixed" 

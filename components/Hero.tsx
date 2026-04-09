@@ -18,7 +18,7 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 function frameUrl(frameNumber: number): string {
-  return `${FRAME_FOLDER}/ezgif-frame-${String(frameNumber).padStart(3, "0")}.jpg`;
+  return `${FRAME_FOLDER}/ezgif-frame-${String(frameNumber).padStart(3, "0")}.webp`;
 }
 
 export default function Hero() {

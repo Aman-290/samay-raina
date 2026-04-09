@@ -77,7 +77,7 @@ export default function LatentRiot() {
             ref={(el) => { cardRefs.current[0] = el; }}
             className="md:col-span-8 border-l-4 border-l-alarm border-t border-t-steel/30 border-r border-r-steel/30 border-b border-b-steel/30 p-8 md:p-12 shadow-2xl relative overflow-hidden"
             style={{
-                backgroundImage: "linear-gradient(to right, rgba(28,28,30,0.95), rgba(28,28,30,0.7)), url('/images/latent_riot.png')",
+                backgroundImage: "linear-gradient(to right, rgba(28,28,30,0.95), rgba(28,28,30,0.7)), url('/images/latent_riot.webp')",
                 backgroundSize: "cover",
                 backgroundPosition: "center"
             }}

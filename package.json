@@ -29,6 +29,7 @@
     "eslint-config-next": "16.2.3",
     "jpegtran-bin": "^7.0.0",
     "oxipng-bin": "^1.0.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

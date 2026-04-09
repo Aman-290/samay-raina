@@ -47,7 +47,7 @@ export default function StillAlive() {
       className="relative py-32 md:py-48 overflow-hidden min-h-screen flex flex-col justify-center"
       style={{ 
           background: "#000",
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,1)), url('/images/stage_spotlight.png')",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,1)), url('/images/stage_spotlight.webp')",
           backgroundSize: "cover",
           backgroundPosition: "top center",
           backgroundAttachment: "fixed"

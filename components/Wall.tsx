@@ -16,7 +16,7 @@ export default function Wall() {
       id="wall" 
       className="relative pt-32 pb-24 bg-[#050505] overflow-hidden min-h-screen"
       style={{
-          backgroundImage: "linear-gradient(rgba(5,5,5,0.8), rgba(5,5,5,0.95)), url('/images/wall_bg.png')",
+          backgroundImage: "linear-gradient(rgba(5,5,5,0.8), rgba(5,5,5,0.95)), url('/images/wall_bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed"
