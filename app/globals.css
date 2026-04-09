@@ -9,8 +9,11 @@
   --color-offwhite: #f4f4f5;
   --color-dim: #6b6b6f;
   --color-alarm: #ff3d00;
+  --color-alarm-muted: #8A2A0C;
   --color-alive: #00e676;
+  --color-alive-glow: #00E67640;
   --color-gold: #ffd54f;
+  --color-gold-dim: #B29537;
   --color-caution: #ffab40;
   --color-steel: #3a3a3c;
 
@@ -18,12 +21,23 @@
   --font-space: var(--font-space-mono), monospace;
   --font-dm: var(--font-dm-sans), sans-serif;
   --font-caveat: var(--font-caveat-var), cursive;
+  --font-playfair: var(--font-playfair-var), serif;
 }
 
 :root {
   --bg-cell: #0a0a0a;
   --text-chalk: #e8e4df;
   --bar-steel: #3a3a3c;
+}
+
+::selection {
+  background: var(--color-alarm-muted);
+  color: var(--color-chalk);
+}
+
+::-moz-selection {
+  background: var(--color-alarm-muted);
+  color: var(--color-chalk);
 }
 
 html {

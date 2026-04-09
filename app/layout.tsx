@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Space_Mono, DM_Sans, Caveat } from "next/font/google";
+import { Anton, Space_Mono, DM_Sans, Caveat, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const anton = Anton({
@@ -27,6 +27,14 @@ const caveat = Caveat({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-caveat-var",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  weight: ["400", "600", "800", "900"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  variable: "--font-playfair-var",
   display: "swap",
 });
 
@@ -59,7 +67,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${anton.variable} ${spaceMono.variable} ${dmSans.variable} ${caveat.variable}`}
+      className={`${anton.variable} ${spaceMono.variable} ${dmSans.variable} ${caveat.variable} ${playfair.variable}`}
     >
       <body className="font-dm bg-cell text-chalk">{children}</body>
     </html>

@@ -10,15 +10,17 @@ export default function ChessYard() {
   const gridRef = useRef<HTMLDivElement>(null);
   const paragraphsRef = useRef<(HTMLParagraphElement | null)[]>([]);
   const quoteRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     if (gridRef.current) {
       gsap.fromTo(
         gridRef.current,
-        { opacity: 0 },
+        { opacity: 0, scale: 0.9 },
         {
-          opacity: 0.06,
-          duration: 0.8,
+          opacity: 0.15,
+          scale: 1,
+          duration: 2,
           ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -29,18 +31,19 @@ export default function ChessYard() {
       );
     }
 
-    paragraphsRef.current.filter(Boolean).forEach((el) => {
+    paragraphsRef.current.filter(Boolean).forEach((el, index) => {
       gsap.fromTo(
         el,
-        { opacity: 0, y: 20 },
+        { opacity: 0, x: -30 },
         {
           opacity: 1,
-          y: 0,
+          x: 0,
           duration: 1,
-          ease: "power2.out",
+          delay: index * 0.1,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: el,
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none none",
           },
         }
@@ -50,12 +53,13 @@ export default function ChessYard() {
     if (quoteRef.current) {
       gsap.fromTo(
         quoteRef.current,
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: 40, rotateX: 45 },
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          ease: "power2.out",
+          rotateX: 0,
+          duration: 1.5,
+          ease: "back.out(1.2)",
           scrollTrigger: {
             trigger: quoteRef.current,
             start: "top 80%",
@@ -64,6 +68,26 @@ export default function ChessYard() {
         }
       );
     }
+    
+    statsRef.current.filter(Boolean).forEach((el, index) => {
+        gsap.fromTo(
+            el,
+            { opacity: 0, scale: 0.8, y: 20 },
+            {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 0.8,
+                delay: index * 0.15,
+                ease: "back.out(1.5)",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%",
+                    toggleActions: "play none none none",
+                }
+            }
+        )
+    })
 
     return () => {
       ScrollTrigger.getAll()
@@ -76,69 +100,94 @@ export default function ChessYard() {
     const row = Math.floor(i / 8);
     const col = i % 8;
     const isDark = (row + col) % 2 === 1;
-    return <div key={i} className={isDark ? "bg-gold" : ""} />;
+    return <div key={i} className={`${isDark ? "bg-gold" : "bg-transparent"} transition-all duration-1000`} />;
   });
 
   return (
     <section
       ref={sectionRef}
       id="chess-yard"
-      className="relative py-24 md:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #0A0A0A, #141416 200px, #141416)" }}
+      className="relative py-32 md:py-48 overflow-hidden"
+      style={{ background: "#080808" }}
     >
-      <div
-        ref={gridRef}
-        className="absolute inset-0 grid grid-cols-8 opacity-0 pointer-events-none"
-        style={{ gridTemplateRows: "repeat(8, 1fr)" }}
-      >
-        {gridCells}
+      {/* 3D-ish glowing grid background */}
+      <div className="absolute inset-0 perspective-[1000px] overflow-hidden pointer-events-none flex items-center justify-center">
+        <div
+          ref={gridRef}
+          className="w-[200%] h-[200%] grid grid-cols-8 opacity-0 transform rotate-x-[60deg] -translate-y-[20%]"
+          style={{ gridTemplateRows: "repeat(8, 1fr)" }}
+        >
+          {gridCells}
+        </div>
+        {/* Vignette to blend grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#080808_70%)]"></div>
       </div>
 
       <div className="relative max-w-[1400px] mx-auto px-6 z-10">
-        <div className="cell-door-plate mx-auto mb-16 lg:mb-24">
-          <span className="font-space text-[10px] md:text-xs text-gold tracking-[3px]">
+        <div className="cell-door-plate mx-auto mb-20 lg:mb-32 shadow-[0_0_30px_rgba(255,213,79,0.1)] border-gold/30">
+          <span className="font-space text-[10px] md:text-xs text-gold tracking-[0.3em]">
             {chessYardContent.sectionLabel}
           </span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            {chessYardContent.paragraphs.map((text, i) => (
-              <p
-                key={i}
-                ref={(el) => { paragraphsRef.current[i] = el; }}
-                className="font-dm text-base md:text-xl lg:text-2xl text-chalk leading-[1.8] opacity-0"
-              >
-                {text}
-              </p>
-            ))}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          
+          <div className="lg:col-span-7 flex flex-col gap-8">
+            <div className="relative">
+                <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-gold via-gold/50 to-transparent rounded-full"></div>
+                {chessYardContent.paragraphs.map((text, i) => (
+                <p
+                    key={i}
+                    ref={(el) => { paragraphsRef.current[i] = el; }}
+                    className="font-dm text-lg md:text-2xl text-chalk leading-[1.8] opacity-0 mb-6 pl-6"
+                >
+                    {text}
+                </p>
+                ))}
+            </div>
 
-            <div ref={quoteRef} className="border-l-[4px] lg:border-l-[8px] border-gold pl-6 lg:pl-10 mt-8 opacity-0">
-              <p className="font-caveat text-[28px] md:text-[36px] lg:text-[44px] text-gold leading-[1.4] -rotate-1">
+            <div ref={quoteRef} className="mt-8 opacity-0 perspective-1000">
+              <p className="font-playfair italic text-[32px] md:text-[42px] lg:text-[52px] text-gold leading-[1.2] -rotate-1 drop-shadow-[0_0_15px_rgba(255,213,79,0.3)]">
                 {chessYardContent.quote}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 mt-12 justify-center lg:justify-start">
+            {/* Stats as digital clocks */}
+            <div className="flex flex-wrap gap-6 mt-16 lg:mt-24 justify-center xl:justify-start">
               {chessYardContent.stats.map((stat, i) => (
-                <div key={i} className="text-center px-8 py-6 bg-cell rounded shadow-xl border border-steel/20">
-                  <div className="font-anton text-[56px] md:text-[84px] leading-none text-gold">
-                    {stat.value.toLocaleString()}{stat.suffix}
+                <div 
+                    key={i} 
+                    ref={(el) => { if (el) statsRef.current[i] = el; }}
+                    className="flex flex-col relative px-8 py-6 rounded-lg bg-[#0e0e0e]/80 border border-gold/20 shadow-[0_0_40px_rgba(FF,D5,4F,0.05)] backdrop-blur-md overflow-hidden opacity-0"
+                >
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold/50 to-transparent"></div>
+                  <div className="font-space text-[48px] md:text-[64px] leading-none text-gold tracking-tight" style={{ textShadow: "0 0 20px rgba(255,213,79,0.4)" }}>
+                    {stat.value.toLocaleString()}<span className="text-3xl text-gold/60 ml-1">{stat.suffix}</span>
                   </div>
-                  <div className="font-dm text-[11px] md:text-xs text-dim mt-2 tracking-widest uppercase">{stat.label}</div>
+                  <div className="font-dm text-[11px] md:text-sm text-dim mt-3 tracking-[0.2em] uppercase font-bold text-center xl:text-left">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="w-full max-w-[500px] mx-auto shadow-2xl rounded-sm overflow-hidden bg-cell p-4 border border-gold/10">
+          <div className="lg:col-span-5 relative mt-12 lg:mt-0">
+             {/* Neon glow behind the puzzle */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gold/20 blur-[100px] rounded-full point-events-none"></div>
+            
+            <div className="relative w-full max-w-[500px] mx-auto rounded-xl overflow-hidden bg-[#121212]/60 backdrop-blur-xl p-6 border border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(255,213,79,0.05)]">
+               
+               {/* Screws/bolts in corners */}
+               <div className="absolute top-3 left-3 w-2 h-2 rounded-full bg-steel/50"></div>
+               <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-steel/50"></div>
+               <div className="absolute bottom-3 left-3 w-2 h-2 rounded-full bg-steel/50"></div>
+               <div className="absolute bottom-3 right-3 w-2 h-2 rounded-full bg-steel/50"></div>
+               
               <ChessPuzzle />
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-6 right-6 font-space text-lg text-steel">
+        <div className="absolute bottom-6 right-8 font-space text-[40px] opacity-20 text-gold -rotate-[15deg]">
           {chessYardContent.tallyMarks}
         </div>
       </div>

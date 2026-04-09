@@ -15,9 +15,9 @@ export default function SolitaryFIR() {
     if (containerRef.current && sectionRef.current) {
       gsap.fromTo(
         containerRef.current,
-        { maxWidth: "900px", padding: "0 20px" },
+        { maxWidth: "1000px", padding: "0 20px" },
         {
-          maxWidth: "520px",
+          maxWidth: "700px",
           padding: "0 40px",
           ease: "power2.inOut",
           scrollTrigger: {
@@ -30,14 +30,15 @@ export default function SolitaryFIR() {
       );
     }
 
-    paragraphsRef.current.filter(Boolean).forEach((el) => {
+    paragraphsRef.current.filter(Boolean).forEach((el, index) => {
       gsap.fromTo(
         el,
-        { opacity: 0, y: 20 },
+        { opacity: 0, x: 20 },
         {
           opacity: 1,
-          y: 0,
+          x: 0,
           duration: 1,
+          delay: index * 0.15,
           ease: "power2.out",
           scrollTrigger: {
             trigger: el,
@@ -59,37 +60,53 @@ export default function SolitaryFIR() {
     <section
       ref={sectionRef}
       id="solitary-fir"
-      className="relative bg-cell py-24 md:py-32"
+      className="relative py-32 md:py-48 bg-[#0a0a09]"
     >
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 pointer-events-none opacity-10" style={{ backgroundImage: "linear-gradient(#3a3a3c 1px, transparent 1px), linear-gradient(90deg, #3a3a3c 1px, transparent 1px)", backgroundSize: "40px 40px" }}></div>
+
       <div
         ref={containerRef}
         className="mx-auto"
-        style={{ maxWidth: "900px", padding: "0 20px", willChange: "max-width, padding" }}
+        style={{ maxWidth: "1000px", padding: "0 20px", willChange: "max-width, padding" }}
       >
-        <div className="cell-door-plate mx-auto mb-16 border-alarm">
-          <span className="font-space text-[10px] md:text-xs text-alarm tracking-[3px]">
-            {solitaryFIRContent.sectionLabel}
-          </span>
+        <div className="flex justify-between items-center mb-16 border-b border-steel/40 pb-4">
+            <div className="font-space text-xs text-dim tracking-widest uppercase">FILE REF: SR/FIR-01</div>
+            <div className="border border-alarm text-alarm font-space text-[10px] uppercase font-bold px-3 py-1 bg-alarm/5 rotate-[5deg] tracking-widest shadow-[0_0_10px_rgba(255,61,0,0.2)]">Classified</div>
         </div>
 
-        {solitaryFIRContent.paragraphs.map((text, i) => (
-          <p
-            key={i}
-            ref={(el) => { paragraphsRef.current[i] = el; }}
-            className="font-dm text-base md:text-lg text-chalk leading-[1.8] mb-6 opacity-0"
-          >
-            {text}
-          </p>
-        ))}
+        <div className="mb-16">
+            <h2 className="font-anton text-4xl md:text-6xl text-chalk uppercase mb-4 tracking-wide">{solitaryFIRContent.sectionLabel}</h2>
+            <div className="w-12 h-1 bg-alarm"></div>
+        </div>
 
-        <div className="my-12">
+        <div className="bg-[#111111] border border-steel/30 p-6 md:p-10 shadow-2xl relative">
+            {/* Top left corner bracket */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-chalk/40"></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-chalk/40"></div>
+
+            {solitaryFIRContent.paragraphs.map((text, i) => (
+            <p
+                key={i}
+                ref={(el) => { paragraphsRef.current[i] = el; }}
+                className="font-space text-sm md:text-base text-chalk/90 leading-[1.9] mb-6 opacity-0 selection:bg-alarm selection:text-yard"
+            >
+                <span className="text-alarm mr-3 opacity-50">&gt;</span>{text}
+            </p>
+            ))}
+        </div>
+
+        <div className="my-16 md:my-24 bg-cell border border-steel p-2 shadow-2xl skew-x-[-1deg]">
           <FIRSlider />
         </div>
 
         <FatherMother />
 
-        <div className="text-right font-space text-lg text-steel mt-8">
-          {solitaryFIRContent.tallyMarks}
+        <div className="flex justify-between items-center mt-16 pt-8 border-t border-steel/30">
+            <div className="font-space text-xs text-dim uppercase">END OF FILE</div>
+            <div className="text-right font-space text-3xl text-steel opacity-30 -rotate-[15deg]">
+            {solitaryFIRContent.tallyMarks}
+            </div>
         </div>
       </div>
     </section>
