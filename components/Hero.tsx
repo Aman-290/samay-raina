@@ -267,39 +267,53 @@ export default function Hero() {
       </div>
 
       <div
-        className={`fixed inset-0 z-30 grid place-items-center bg-black transition-opacity duration-700 ${
+        className={`fixed inset-0 z-30 grid place-items-center bg-black transition-opacity duration-1000 ${
           hasEntered ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
-        style={{ backgroundColor: "#000" }}
+        style={{ backgroundColor: "#040404" }}
       >
-        <div className="text-center px-6">
+        <div className="text-center px-6 w-full max-w-sm flex flex-col items-center">
           {!isReady ? (
-            <>
-              <p className="font-space text-[10px] md:text-xs tracking-[0.4em] text-white/80 uppercase">
-                Loading Reel
-              </p>
-              <p className="font-anton text-5xl md:text-7xl text-white mt-3">
-                {loadingPercent}%
-              </p>
-              <p className="font-space text-[10px] tracking-[0.18em] text-white/55 mt-2">
-                {loadedCount}/{TOTAL_FRAMES} frames buffered
-              </p>
-            </>
+            <div className="w-full flex justify-center flex-col items-center animate-[fade-in_1s_ease-out]">
+              <div className="relative mb-12">
+                <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full scale-150 animate-pulse"></div>
+                <h2 className="font-playfair italic text-5xl md:text-7xl text-chalk relative z-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                  S.R.
+                </h2>
+              </div>
+              
+              <div className="w-full relative mt-8">
+                <div className="h-[2px] w-full bg-white/10 overflow-hidden relative">
+                    <div 
+                        className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-transparent via-white to-white shadow-[0_0_10px_white]" 
+                        style={{ width: `${loadingPercent}%`, transition: 'width 0.3s ease-out' }}
+                    ></div>
+                </div>
+                <div className="flex justify-between items-center mt-6">
+                    <p className="font-space text-[10px] md:text-xs tracking-[0.3em] text-dim uppercase uppercase">
+                        {loadingPercent < 40 ? "Setting up the board..." : loadingPercent < 80 ? "Loading the Supreme Leader..." : "Initializing Jailbreak..."}
+                    </p>
+                    <p className="font-space text-xs text-white opacity-80 tracking-widest">{loadingPercent}%</p>
+                </div>
+              </div>
+            </div>
           ) : (
             <button
               type="button"
-              className="group relative flex flex-col items-center gap-4 bg-black px-8 py-7"
+              className="group relative flex flex-col items-center gap-6 bg-transparent px-8 py-7 w-full border border-white/5 hover:border-white/20 hover:bg-white/5 transition-all duration-500 rounded-sm"
               onClick={() => {
                 setMuted(false);
                 playSound("synth-bass", "/audio/synth-bass.mp3", { volume: 0.8 });
                 setHasEntered(true);
               }}
             >
-              <span className="font-anton text-6xl md:text-8xl text-white tracking-widest uppercase transition-transform group-hover:scale-105 duration-300">
-                ENTER
+              <div className="absolute inset-0 bg-white/5 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="font-playfair italic text-5xl md:text-6xl text-white tracking-wide transition-all group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] duration-500 relative z-10">
+                Enter
               </span>
-              <span className="font-space text-[10px] md:text-xs tracking-[0.3em] text-white/60 group-hover:text-white/90 uppercase transition-colors duration-300">
-                Click To Enter Experience
+              <div className="h-[1px] w-12 bg-white/30 group-hover:w-24 group-hover:bg-white transition-all duration-500"></div>
+              <span className="font-space text-[10px] md:text-xs tracking-[0.4em] text-dim group-hover:text-white uppercase transition-colors duration-500 relative z-10">
+                Unmute Experience
               </span>
             </button>
           )}
