@@ -27,8 +27,7 @@ export default function Wall() {
         </div>
 
         {/* Scattered Cards */}
-        <div className="relative min-h-[800px] flex justify-center items-center">
-            <div className="absolute inset-0 flex flex-wrap justify-center items-center gap-6 md:gap-14">
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 py-12 md:py-32 relative z-10 w-full mx-auto max-w-[1400px]">
             {wallContent.quotes.map((quote, i) => {
                 const rotations = [-8, 12, -15, 6, 18, -4, -12, 9, 2, -18, 14, -7];
                 const mt = [0, 80, -40, 120, -80, 40, 60, -20, 100, 10, -60, 30];
@@ -41,7 +40,7 @@ export default function Wall() {
                 return (
                 <div
                     key={i}
-                    className={`w-full sm:w-[340px] md:w-[420px] bg-[#101010] border ${isWarning ? 'border-alarm/40' : 'border-[#222]'} rounded-sm p-8 shadow-2xl transition-all duration-500 hover:scale-110 hover:z-50 relative group cursor-crosshair`}
+                    className={`w-full sm:w-[340px] md:w-[420px] bg-[#101010] border ${isWarning ? 'border-alarm/40' : 'border-[#222]'} rounded-sm p-8 shadow-2xl transition-all duration-500 hover:scale-105 hover:z-50 relative group cursor-crosshair`}
                     style={{ 
                     transform: `rotate(${rotate}deg)`,
                     marginTop: `${marginTop}px`,
@@ -64,7 +63,6 @@ export default function Wall() {
                 </div>
                 );
             })}
-            </div>
         </div>
 
         {/* Footer Sequence */}
