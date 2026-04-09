@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { 
   Anton, Space_Mono, DM_Sans, Caveat, Playfair_Display,
-  Permanent_Marker, Indie_Flower, Kalam, Amatic_SC, Shadows_Into_Light 
+  Permanent_Marker, Indie_Flower, Rock_Salt, Caveat_Brush, Special_Elite, VT323, Shadows_Into_Light 
 } from "next/font/google";
 import "./globals.css";
 
@@ -55,17 +55,31 @@ const indie = Indie_Flower({
   display: "swap",
 });
 
-const kalam = Kalam({
-  weight: ["400", "700"],
+const rockSalt = Rock_Salt({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-kalam",
+  variable: "--font-rock",
   display: "swap",
 });
 
-const amatic = Amatic_SC({
-  weight: ["400", "700"],
+const caveatBrush = Caveat_Brush({
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-amatic",
+  variable: "--font-caveat-brush",
+  display: "swap",
+});
+
+const specialElite = Special_Elite({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-special",
+  display: "swap",
+});
+
+const vt323 = VT323({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-vt",
   display: "swap",
 });
 
@@ -105,7 +119,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${anton.variable} ${spaceMono.variable} ${dmSans.variable} ${caveat.variable} ${playfair.variable} ${marker.variable} ${indie.variable} ${kalam.variable} ${amatic.variable} ${shadows.variable}`}
+      className={`${anton.variable} ${spaceMono.variable} ${dmSans.variable} ${caveat.variable} ${playfair.variable} ${marker.variable} ${indie.variable} ${rockSalt.variable} ${caveatBrush.variable} ${specialElite.variable} ${vt323.variable} ${shadows.variable}`}
     >
       <body className="font-dm bg-cell text-chalk">{children}</body>
     </html>

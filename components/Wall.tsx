@@ -3,10 +3,11 @@ import { wallContent } from "@/lib/content";
 export default function Wall() {
   const cardStyles = [
     { font: 'font-caveat', container: 'text-chalk/90 bg-transparent text-4xl hover:scale-105', shadow: '0 0 10px rgba(255,255,255,0.2)' },
-    { font: 'font-marker', container: 'text-alarm bg-transparent text-3xl hover:scale-105', shadow: '4px 4px 0px #000' },
+    { font: 'font-rock', container: 'text-alarm bg-transparent text-2xl hover:scale-105', shadow: '2px 2px 0px #000' },
     { font: 'font-indie', container: 'text-[#1a1a1a] bg-[#f4f0e6] p-6 border-t-[12px] border-[#e8dcb8] text-2xl hover:scale-110 shadow-[0_20px_40px_rgba(0,0,0,0.8)]' },
-    { font: 'font-kalam', container: 'text-alive bg-transparent text-3xl hover:scale-105', shadow: '0 0 20px rgba(0,230,118,0.5)' },
-    { font: 'font-amatic', container: 'text-gold bg-transparent text-5xl tracking-widest hover:scale-105', shadow: '2px 2px 10px rgba(0,0,0,0.9)' },
+    { font: 'font-caveat-brush', container: 'text-alive bg-transparent text-4xl hover:scale-105', shadow: '0 0 10px rgba(0, 255, 0, 0.5)' },
+    { font: 'font-special', container: 'text-chalk/90 bg-black/80 backdrop-blur-sm p-6 border border-white/20 text-xl rounded-sm hover:scale-105 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' },
+    { font: 'font-vt', container: 'text-gold bg-[#111]/90 p-6 border-l-4 border-gold text-3xl hover:scale-105 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' },
     { font: 'font-shadows', container: 'text-chalk/80 bg-black/60 backdrop-blur-md p-8 border border-white/10 text-3xl rounded-xl hover:scale-105 shadow-[0_10px_30px_rgba(0,0,0,0.9)]' }
   ];
 

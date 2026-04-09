@@ -30,9 +30,11 @@ const config: Config = {
         playfair: ["var(--font-playfair-var)", "serif"],
         marker: ["var(--font-marker)", "cursive"],
         indie: ["var(--font-indie)", "cursive"],
-        kalam: ["var(--font-kalam)", "cursive"],
-        amatic: ["var(--font-amatic)", "cursive"],
         shadows: ["var(--font-shadows)", "cursive"],
+        rock: ["var(--font-rock)", "cursive"],
+        "caveat-brush": ["var(--font-caveat-brush)", "cursive"],
+        special: ["var(--font-special)", "monospace"],
+        vt: ["var(--font-vt)", "monospace"],
       },
       fontSize: {
         "hero-desktop": ["120px", { lineHeight: "1" }],
