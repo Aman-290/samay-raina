@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
+import { playSound } from "@/lib/audio";
 
 export default function EasterEggs() {
   const [isBakchod, setIsBakchod] = useState(false);
@@ -22,6 +23,7 @@ export default function EasterEggs() {
       }
       if (bufferRef.current === target) {
         setIsBakchod((prev) => !prev);
+        playSound("roast", "/audio/roast-clip.mp3", { volume: 0.5 });
         bufferRef.current = "";
       }
     };

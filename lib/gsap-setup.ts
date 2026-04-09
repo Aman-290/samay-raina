@@ -4,12 +4,13 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 
+// Register plugin at module scope so it's available before initScrollEngine is called
+gsap.registerPlugin(ScrollTrigger);
+
 let lenisInstance: Lenis | null = null;
 
 export function initScrollEngine(): Lenis {
   if (lenisInstance) return lenisInstance;
-
-  gsap.registerPlugin(ScrollTrigger);
 
   lenisInstance = new Lenis({
     duration: 1.2,

@@ -145,7 +145,7 @@ export default function Hero() {
         className="absolute inset-0 bg-concrete opacity-0"
       />
 
-      {/* Portrait placeholder */}
+      {/* Portrait */}
       <div
         ref={portraitRef}
         className="absolute inset-0 flex items-center justify-center"
@@ -153,9 +153,11 @@ export default function Hero() {
           filter: "brightness(0.4) saturate(0.4)",
         }}
       >
-        <div className="w-[300px] h-[400px] md:w-[400px] md:h-[520px] bg-concrete rounded flex items-center justify-center">
-          <span className="font-space text-dim text-xs">SAMAY PORTRAIT</span>
-        </div>
+        <img
+          src="/images/samay-portrait.png"
+          alt="Samay Raina"
+          className="w-[300px] h-[400px] md:w-[400px] md:h-[520px] object-cover rounded"
+        />
       </div>
 
       {/* Steel bars */}

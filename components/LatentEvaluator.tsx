@@ -35,8 +35,8 @@ export default function LatentEvaluator() {
           <div className="relative w-full aspect-video bg-concrete rounded overflow-hidden">
             <iframe
               className="absolute inset-0 w-full h-full"
-              src="https://www.youtube.com/embed/DkPnUBjRzZs?start=0&end=15&loop=1&mute=1"
-              title="IGL Audition Clip"
+              src="https://www.youtube.com/embed/MTSt7a48grU?mute=1"
+              title="Samay Raina: Beyond the Controversies"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

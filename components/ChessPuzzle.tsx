@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { puzzles } from "@/lib/chess-puzzles";
+import { playSound } from "@/lib/audio";
 
 const Chessboard = dynamic(
   () => import("react-chessboard").then((mod) => mod.Chessboard),
@@ -29,14 +30,19 @@ export default function ChessPuzzleComponent() {
 
   const onDrop = useCallback(
     ({ sourceSquare, targetSquare }: { piece: any; sourceSquare: string; targetSquare: string | null }): boolean => {
-      if (!game || !Chess || solved || !targetSquare) return false;
+      if (!game || !Chess || solved || !targetSquare || sourceSquare === targetSquare) return false;
 
       const gameCopy = new Chess(game.fen());
-      const move = gameCopy.move({
-        from: sourceSquare,
-        to: targetSquare,
-        promotion: "q",
-      });
+      let move;
+      try {
+        move = gameCopy.move({
+          from: sourceSquare,
+          to: targetSquare,
+          promotion: "q",
+        });
+      } catch {
+        return false;
+      }
 
       if (!move) return false;
 
@@ -47,6 +53,7 @@ export default function ChessPuzzleComponent() {
         if (gameCopy.isCheckmate() || moveIndex >= puzzle.solution.length - 1) {
           setMessage("✓ Samay would be proud!");
           setSolved(true);
+          playSound("roast", "/audio/roast-clip.mp3", { volume: 0.5 });
         } else {
           setMoveIndex((prev) => prev + 1);
           setMessage("Correct! Keep going...");

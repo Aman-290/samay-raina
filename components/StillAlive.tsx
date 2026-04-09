@@ -107,16 +107,19 @@ export default function StillAlive() {
       />
 
       <div className="absolute top-0 left-0 right-0 h-16 flex justify-around px-8 opacity-10 pointer-events-none">
-        {[15, -20, 8, -12, 25, -8].map((rot, i) => (
-          <div
-            key={i}
-            className="w-[6px] bg-steel"
-            style={{
-              height: `${35 + Math.random() * 25}px`,
-              transform: `rotate(${rot}deg)`,
-            }}
-          />
-        ))}
+        {[15, -20, 8, -12, 25, -8].map((rot, i) => {
+          const heights = [48, 52, 40, 45, 55, 38];
+          return (
+            <div
+              key={i}
+              className="w-[6px] bg-steel"
+              style={{
+                height: `${heights[i]}px`,
+                transform: `rotate(${rot}deg)`,
+              }}
+            />
+          );
+        })}
       </div>
 
       <div

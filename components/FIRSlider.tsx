@@ -4,6 +4,11 @@ import { useState, useCallback } from "react";
 import FIRModal from "@/components/FIRModal";
 import { playSound, stopSound, setSoundVolume } from "@/lib/audio";
 
+// Generate a clank when FIR is revealed
+function playClank() {
+  playSound("clank", "/audio/clank.mp3", { volume: 0.6 });
+}
+
 export default function FIRSlider() {
   const [value, setValue] = useState(100);
   const [showModal, setShowModal] = useState(false);
@@ -23,6 +28,7 @@ export default function FIRSlider() {
     }
 
     if (v <= 1 && !showModal) {
+      playClank();
       setFlashRed(true);
       setTimeout(() => {
         setFlashRed(false);
