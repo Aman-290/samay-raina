@@ -4,6 +4,7 @@ import {
   Permanent_Marker, Indie_Flower, Rock_Salt, Caveat_Brush, Special_Elite, VT323, Shadows_Into_Light 
 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 
 const anton = Anton({
@@ -154,6 +155,7 @@ export default function RootLayout({
       <body className="font-dm bg-cell text-chalk">
         {children}
         <Analytics />
+        <GoogleAnalytics gaId="G-T2E5KK8ZJ6" />
       </body>
     </html>
   );
